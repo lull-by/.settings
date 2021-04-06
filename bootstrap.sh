@@ -1,2 +1,3 @@
 #! /bin/bash
-ln -s ./config/.vimrc ~/.vimrc
+ln -s dotfiles/.vimrc ~/.vimrc
+ln -s dotfiles/.zshrc ~/.zshrc

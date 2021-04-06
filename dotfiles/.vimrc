@@ -25,11 +25,6 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 
-" Set neovim clipboard to system keyboard
-if has('nvim')
-  set clipboard+=unnamedplus
-endif
-
 " Mappings 
 let mapleader = ";"
 let maplocalleader = ","
@@ -48,11 +43,11 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'ycm-core/YouCompleteMe'
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dense-analysis/ale', { 'on': 'ALEToggle' }
-Plug 'itchyny/lightline.vim'
 Plug 'lervag/vimtex'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'vim-airline/vim-airline'
 call plug#end()
 
 " NERDTree Config
@@ -63,9 +58,8 @@ nmap ++ <plug>NERDCommenterToggle
 " ALE Config
 nmap <C-a> :ALEToggle <CR>
 
-"plantuml-previewer Config
-nmap <localleader>p :PlantumlOpen <CR>
-nmap <localleader>s :PlantumlSave <CR>
-
 "vimtex Config
 let g:tex_flavor = 'latex'
+
+"color config
+colorscheme dracula
