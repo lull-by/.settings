@@ -8,7 +8,7 @@ export ZSH="/home/jefferyl/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="jonathan"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -23,8 +23,7 @@ ZSH_THEME="robbyrussell"
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# Uncomment the following line to disable bi-weekly auto-update checks.  DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
 # DISABLE_UPDATE_PROMPT="true"
@@ -102,4 +101,21 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+
+# Use vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
 alias nv=nvim
+alias pr="cd ~/Projects"
+alias gs="git status"
+alias ds="sudo systemctl start docker"
+
+# add ~/Scripts dir to path
+export PATH=$PATH:~/Scripts
+
+export QT_LOGGING_RULES="kwin_*.debug=true"
+
+# set neovim to be the default editor
+export VISUAL="nvim"
