@@ -63,6 +63,9 @@ call plug#end()
 " PLUGIN-SPECIFIC
 " -----------------------------------------------------------------------------
 
+" Goyo
+nnoremap <C-g> :Goyo <CR>
+
 " NERDTree
 "nmap <C-s> :NERDTreeToggle <CR>
 
@@ -74,3 +77,4 @@ let g:tex_flavor = 'latex'
 
 " Colorscheme
 colorscheme dracula
+hi Normal guibg=NONE ctermbg=NONE " Enable transparent background
