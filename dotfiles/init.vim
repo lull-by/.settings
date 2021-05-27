@@ -64,7 +64,7 @@ call plug#end()
 " -----------------------------------------------------------------------------
 
 " NERDTree
-nmap <C-s> :NERDTreeToggle <CR>
+"nmap <C-s> :NERDTreeToggle <CR>
 
 " ALE
 nmap <C-a> :ALEToggle <CR>
