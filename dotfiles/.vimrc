@@ -51,7 +51,7 @@ set expandtab
 " ------------------------------------------------------------------------------
 " Leader Keys
 let mapleader = " "
-let maplocalleader = "\\"
+let maplocalleader = ";"
 
 " Redraw Screen - turns off search highlighting until the next search
 nnoremap <C-L> :nohl<CR><C-L>
