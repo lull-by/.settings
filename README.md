@@ -1,2 +1,2 @@
-# Config
-Configuration files :D
+# Settings
+My configuration files :D
