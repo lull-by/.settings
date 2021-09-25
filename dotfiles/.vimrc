@@ -14,13 +14,14 @@ set laststatus=2 " have status bar on always
 set notimeout ttimeout ttimeoutlen=200 " change command timeout
 
 " General
-set confirm " ask for comfirmation for writing
-set mouse=a " enable mouse in all modes
+set confirm " ask for confirmation for writing
+if has('mouse')
+  set mouse=a " enable mouse in all modes
+endif
 set guicursor= " Disable nvim gui cursor
 
 " Columns
 set colorcolumn=81
-highlight ColorColumn ctermbg=8
 set nowrap
 
 " Line Numbers
@@ -61,6 +62,12 @@ nnoremap <leader>te :tabe<SPACE>
 nnoremap <leader>th :tabp<CR>
 nnoremap <leader>tl :tabn<CR>
 
+" Toggle Wrap
+nnoremap <leader>w :set wrap!<CR>
+
+" Terminal Mode Exit
+tnoremap <ESC> <C-\><C-n>
+
 " PLUGINS
 " ------------------------------------------------------------------------------
 " Autoinstall vim-plug
@@ -79,6 +86,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'lervag/vimtex'
   Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'junegunn/goyo.vim'
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+  Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 " PLUGIN-SPECIFIC
@@ -86,17 +96,21 @@ call plug#end()
 
 " Goyo
 " Writing Mode
-nnoremap <C-g> :Goyo<CR>:set wrap<CR>:hi Normal guibg=NONE ctermbg=NONE<CR>
+nnoremap <leader>g :Goyo<CR>
 
 " NERDTree
-nmap <C-s> :NERDTreeToggle<CR>
+nnoremap <leader>f :NERDTreeToggle<CR>
 
 " ALE
-nmap <C-a> :ALEToggle<CR>
+nnoremap <leader>a :ALEToggle<CR>
 
 " vimtex
 let g:tex_flavor = 'latex'
 
 " Colorscheme
 colorscheme dracula
-hi Normal guibg=NONE ctermbg=NONE " Enable transparent background
+
+" utilsnips
+let g:UltiSnipsExpandTrigger="<c-x>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
