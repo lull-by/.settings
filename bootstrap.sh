@@ -1,26 +1,45 @@
 #!/bin/bash
 
+# Absolute path to this script, e.g. /home/user/bin/foo.sh
+SCRIPT=$(readlink -f "$0")
+# Absolute path this script is in, thus /home/user/bin
+SCRIPTPATH=$(dirname "$SCRIPT")
+
+NVIMTARGET="$HOME/.config/nvim/init.vim"
+NVIMSOURCE="$SCRIPTPATH/dotfiles/init.vim"
+
+VIMTARGET="$HOME/.vimrc"
+VIMSOURCE="$SCRIPTPATH/dotfiles/.vimrc"
+
+ZSHTARGET="$HOME/.zshrc"
+ZSHSOURCE="$SCRIPTPATH/dotfiles/.zshrc"
+
+TMUXTARGET="$HOME/.tmux.conf"
+TMUXSOURCE="$SCRIPTPATH/dotfiles/.tmux.conf"
+
 # nvim
-if test -f "$HOME/.config/nvim/init.vim"; then
-  rm -i "$HOME/.config/nvim/init.vim"
+# check if config file exists
+if [ ! -e $NVIMTARGET ]; then
+  rm -i $NVIMTARGET
+else
+  mkdir -p ~/.config/nvim
 fi
-mkdir -p ~/.config/nvim
-ln -s $PWD/dotfiles/init.vim "$HOME/.config/nvim/init.vim"
+ln -sf $NVIMSOURCE $NVIMTARGET
 
 # vim
-if test -f ~/.vimrc; then
-  rm -i "$HOME/.vimrc"
+if [ ! -e $VIMTARGET ]; then
+  rm -i $VIMTARGET
 fi
-ln -s $PWD/dotfiles/.vimrc "$HOME/.vimrc"
+ln -sf $VIMSOURCE $VIMTARGET
 
 # zsh
-if test -f "$HOME/.zshrc"; then
-  rm -i "$HOME/.zshrc"
+if [ ! -e $ZSHTARGET ]; then
+  rm -i $ZSHTARGET
 fi
-ln -s $PWD/dotfiles/.zshrc "$HOME/.zshrc"
+ln -sf $ZSHSOURCE $ZSHTARGET
 
 # tmux
-if test -f "$HOME/.tmux.conf"; then
-  rm -i "$HOME/.tmux.conf"
+if [ ! -e $TMUXTARGET ]; then
+  rm -i $TMUXTARGET
 fi
-ln -s $PWD/dotfiles/.tmux.conf $HOME/.tmux.conf
+ln -sf $TMUXSOURCE $TMUXTARGET
