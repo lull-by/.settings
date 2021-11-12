@@ -19,7 +19,7 @@ TMUXSOURCE="$SCRIPTPATH/dotfiles/.tmux.conf"
 
 # nvim
 # check if config file exists
-if [ ! -e $NVIMTARGET ]; then
+if [ -e $NVIMTARGET ]; then
   rm -i $NVIMTARGET
 else
   mkdir -p ~/.config/nvim
@@ -27,19 +27,19 @@ fi
 ln -sf $NVIMSOURCE $NVIMTARGET
 
 # vim
-if [ ! -e $VIMTARGET ]; then
+if [ -e $VIMTARGET ]; then
   rm -i $VIMTARGET
 fi
 ln -sf $VIMSOURCE $VIMTARGET
 
 # zsh
-if [ ! -e $ZSHTARGET ]; then
+if [ -e $ZSHTARGET ]; then
   rm -i $ZSHTARGET
 fi
 ln -sf $ZSHSOURCE $ZSHTARGET
 
 # tmux
-if [ ! -e $TMUXTARGET ]; then
+if [ -e $TMUXTARGET ]; then
   rm -i $TMUXTARGET
 fi
 ln -sf $TMUXSOURCE $TMUXTARGET
