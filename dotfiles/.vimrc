@@ -79,10 +79,11 @@ endif
 
 " Plugins
 call plug#begin('~/.vim/plugged')
+  "Plug 'ycm-core/YouCompleteMe'
+  "Plug 'dense-analysis/ale', { 'on': 'ALEToggle' }
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-  Plug 'ycm-core/YouCompleteMe'
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'dense-analysis/ale', { 'on': 'ALEToggle' }
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
   Plug 'lervag/vimtex'
   Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'junegunn/goyo.vim'
