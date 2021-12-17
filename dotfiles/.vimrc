@@ -70,7 +70,7 @@ tnoremap <ESC> <C-\><C-n>
 
 " PLUGINS
 " ------------------------------------------------------------------------------
-" Autoinstall vim-plug
+" Installs vim-plug
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -79,21 +79,16 @@ endif
 
 " Plugins
 call plug#begin('~/.vim/plugged')
-  "Plug 'ycm-core/YouCompleteMe'
-  "Plug 'dense-analysis/ale', { 'on': 'ALEToggle' }
-  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-  Plug 'lervag/vimtex'
-  Plug 'dracula/vim', { 'as': 'dracula' }
-  Plug 'junegunn/goyo.vim'
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
-  Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'lervag/vimtex'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'junegunn/goyo.vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
-
-" PLUGIN-SPECIFIC
-" ------------------------------------------------------------------------------
 
 " Goyo
 " Writing Mode
