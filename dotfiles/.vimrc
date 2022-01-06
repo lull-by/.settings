@@ -57,7 +57,7 @@ let maplocalleader = ";"
 " Redraw Screen - turns off search highlighting until the next search
 nnoremap <C-L> :nohl<CR><C-L>
 
-" tabs
+" Tabs
 nnoremap <leader>te :tabe<SPACE>
 nnoremap <leader>th :tabp<CR>
 nnoremap <leader>tl :tabn<CR>
@@ -65,8 +65,15 @@ nnoremap <leader>tl :tabn<CR>
 " Toggle Wrap
 nnoremap <leader>w :set wrap!<CR>
 
-" Terminal Mode Exit
+" Yank current line
+nnoremap Y yy
+
+" Terminal mode exit
 tnoremap <ESC> <C-\><C-n>
+
+" Edit and reload vimrc
+nnoremap <leader>ve :tabedit $MYVIMRC<CR>
+nnoremap <leader>vr :source $MYVIMRC<CR>
 
 " PLUGINS
 " ------------------------------------------------------------------------------
