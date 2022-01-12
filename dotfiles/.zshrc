@@ -3,7 +3,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # Theme
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="steeef"
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -40,6 +40,7 @@ alias zshrc="nvim ~/.zshrc && source ~/.zshrc"
 alias pr="cd ~/Projects"
 alias gs="git status"
 alias ds="sudo systemctl start docker"
+alias watotsh="tsh login --proxy watonomous.teleport.sh --auth watonomous_github_connector"
 
 # Add ~/.scripts dir to path
 export PATH=$PATH:~/.scripts
