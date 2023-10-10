@@ -1,45 +1,69 @@
 #!/bin/bash
 
+# Install Oh My Zsh
+if [ ! -e "$HOME/.oh-my-zsh" ]; then
+  echo "Installing Oh My Zsh."
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
 # Absolute path to this script, e.g. /home/user/bin/foo.sh
-SCRIPT=$(readlink -f "$0")
+script_path=$(readlink -f "$0")
 # Absolute path this script is in, thus /home/user/bin
-SCRIPTPATH=$(dirname "$SCRIPT")
+script_dir_path=$(dirname "$script_path")
+settings_path="$script_dir_path/settings"
 
-NVIMTARGET="$HOME/.config/nvim/init.vim"
-NVIMSOURCE="$SCRIPTPATH/dotfiles/init.vim"
+nvim_target="$HOME/.config/nvim/init.vim"
+nvim_source="$settings_path/init.vim"
 
-VIMTARGET="$HOME/.vimrc"
-VIMSOURCE="$SCRIPTPATH/dotfiles/.vimrc"
+vim_target="$HOME/.vimrc"
+vim_source="$settings_path/.vimrc"
 
-ZSHTARGET="$HOME/.zshrc"
-ZSHSOURCE="$SCRIPTPATH/dotfiles/.zshrc"
+zsh_target="$HOME/.zshrc"
+zsh_source="$settings_path/.zshrc"
 
-TMUXTARGET="$HOME/.tmux.conf"
-TMUXSOURCE="$SCRIPTPATH/dotfiles/.tmux.conf"
+tmux_target="$HOME/.tmux.conf"
+tmux_source="$settings_path/.tmux.conf"
 
-# nvim
-# check if config file exists
-if [ -e $NVIMTARGET ]; then
-  rm -i $NVIMTARGET
-else
-  mkdir -p ~/.config/nvim
+bash_target="$HOME/.bashrc"
+bash_source="$settings_path/.bashrc"
+
+aliases_target="$HOME/.aliases.sh"
+aliases_source="$settings_path/.aliases.sh"
+
+secret_aliases_target="$HOME/.secret-aliases.sh"
+secret_aliases_source="$settings_path/.secret-aliases.sh"
+
+target_paths=($nvim_target $vim_target $zsh_target $tmux_target $zsh_target $tmux_target $bash_target $aliases_target $secret_aliases_target)
+source_paths=($nvim_source $vim_source $zsh_source $tmux_source $zsh_source $tmux_source $bash_source $aliases_source $secret_aliases_source)
+
+# Check if the arrays have the same length
+if [ ${#source_paths[@]} -ne ${#target_paths[@]} ]; then
+  echo "Error: source and target arrays must have the same length."
+  exit 1
 fi
-ln -sf $NVIMSOURCE $NVIMTARGET
 
-# vim
-if [ -e $VIMTARGET ]; then
-  rm -i $VIMTARGET
-fi
-ln -sf $VIMSOURCE $VIMTARGET
+# Loop through the arrays and create symbolic links
+for ((i=0; i<${#source_paths[@]}; i++)); do
+  source="${source_paths[i]}"
+  target="${target_paths[i]}"
 
-# zsh
-if [ -e $ZSHTARGET ]; then
-  rm -i $ZSHTARGET
-fi
-ln -sf $ZSHSOURCE $ZSHTARGET
 
-# tmux
-if [ -e $TMUXTARGET ]; then
-  rm -i $TMUXTARGET
-fi
-ln -sf $TMUXSOURCE $TMUXTARGET
+  # Check if the source file exists
+  if [ -e "$source" ]; then
+    # Check if the target exists already then prompt user to delete it
+    if [ -e "$target" ]; then
+      rm -i $target
+    fi
+
+    # Verify that the files parent directories have been created
+    mkdir -p $(dirname "$target")
+
+    ln -sf "$source" "$target"
+    echo "linked '$target' to '$source'"
+
+  else
+    echo "Error: Source file '$source' does not exist."
+    fi
+  done
+
+  echo "All settings have been copied."
