@@ -35,7 +35,12 @@ source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
 
 # Aliases
-source $HOME/.aliases.sh
+if [ -f ~/.aliases.sh ]; then
+  source ~/.aliases.sh
+fi
+if [ -f ~/.secret-aliases.sh ]; then
+  source ~/.secret-aliases.sh
+fi
 
 # Add ~/.scripts dir to path
 export PATH=$PATH:~/.scripts
